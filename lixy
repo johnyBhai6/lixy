@@ -164,25 +164,102 @@ journalctl -u service-name -- a more specific filter
 ....................................................................................
                                 *Networks*
 ____________________________________________________________________________________
-ip a --
+ip a -- Show IP Address.
+
+        Goal: Find your local IP (like 192.168...) to test your website on your phone.
 ....................................................................................
-ss -tulpn --
+ss -tulpn -- "Socket Statistics." See which apps are using which ports.
+
+Goal: Use this when you get the "Port 3000 already in use" error in React.
 ....................................................................................
-ping --
+ping -- Check if a website or server is "alive."
+
+        Example: ping google.com (If you get a reply, your internet is working).
 ....................................................................................
-curl --
+curl -- The Command Line Browser. Downloads or views web content.
+
+        Example: curl http://localhost:3000 (Check if your site is running).
 ....................................................................................
-wget --
+wget -- "Web Get," used to download files directly from a URL.
+
+Example: wget https://nodejs.org/dist/latest.tar.gz
 ....................................................................................
-netstat (legacy) --
+netstat (legacy) -- The "Old School" version of ss.
+
+        Note: It's "Legacy," meaning most modern systems prefer you use ss now.
 ....................................................................................
-                           *SSH & Remote Access*
+                            *Disk, Memory & Performance*
+....................................................................................
+df -h --Disk Free, shows how much "closet space" is left in GB/MB.
+
+        Goal: Check if the disk is 100% full (which crashes databases).
+....................................................................................
+du -sh --Disk Usage, find which specific folder is a "space hog."
+
+        Trick: du -sh * | sort -h (Show all folders sorted by size).
+....................................................................................
+lsblk -- List Block Devices, the "X-ray" for physical hard drives and USBs.
+
+        Goal: See drives even if they aren't "mounted" (active) yet.
+....................................................................................
+mount -- Attach a physical device (USB/Disk) to a folder so you can use it.
+
+        Example: sudo mount /dev/sdb1 /mnt/myusb
+....................................................................................
+umount -- Safely detach a device. (Note: No "n" in the middle!)
+
+        Danger: Always umount before unplugging to avoid corrupting data.
+....................................................................................
+                                *MEMORY & PERFORMANCE*
+____________________________________________________________________________________
+free -h -- Shows RAM usage. Look at the "Available" column, not "Free."
+
+        Goal: See if your React dev server or Chrome is eating all your memory.
+....................................................................................
+uptime -- Shows how long the PC has been on and the Load Average.
+
+        Rule: If "Load Average" > Number of CPU Cores, your system is lagging.
+....................................................................................
+vmstat\ -- Virtual Memory Stat, shows CPU and RAM health every 2 seconds.
+
+        Goal: Check the si/so (Swap) columns; if they are high, you need more RAM.
+....................................................................................
+iostat(basic) --nput/Output Stat, tells you if your hard drive is too slow.
+
+        Goal: Check %iowait; if high, the CPU is stuck waiting for the disk.
+....................................................................................
+top -- The "Task Manager" of Linux. Shows every process live.
+
+        Tip: Press q to exit, M to sort by Memory, or P to sort by CPU.
+....................................................................................
+                          *SSH & Remote Access*
 
 ____________________________________________________________________________________
-ssh user@host -- to estblish a conection with a remote server
+ssh user@host -- to estblish a conection with a remote server using password
 ....................................................................................
-ssh-keygen -- 
+ssh-keygen -- to establish a connection with a remote server using keys
 ....................................................................................
 ~FILE
-~/.ssh/ --
+~/.ssh/ -- The locattion where the encription keys are stored
 ....................................................................................
+                        *Environment Variables*
+
+____________________________________________________________________________________
+env -- list of all exported environment variables for the current user
+....................................................................................
+export VAR=value -- Run a command with a temporary variable.
+....................................................................................
+echo $VAR -- Displays the value of a variable
+....................................................................................
+                       *BASH-bourne again shell*
+____________________________________________________________________________________
+#!/usr/bin/env bash -- The Shebang (Always the 1st line)
+....................................................................................
+read -- equvalent of input() in python 
+....................................................................................
+
+
+
+
+
+
