@@ -1,0 +1,178 @@
+  *BASIC COMANDS*
+
+____________________________________________________________________________
+pwd -- print working directory, tells the location of current directory.
+............................................................................
+ls -la -- List long all, shows every file in current directory.
+............................................................................
+cd + folder name -- change directory,
+
+Command         Action
+
+cd FolderName   Go inside a specific folder
+cd ..           Go back one level (up)
+cd /            Go to the Root of the whole computer
+cd ~            Go to your personal Home folder
+.............................................................................
+clear -- cleans the terminal, its purely cosmetic it clears the terminal page
+         can also use "ctrl + L" which makes the same job quick.
+.............................................................................
+history -- shows the text which were previosly cleared.
+
+!! -- Bang Bang, not the same thing but can be used if we forgot to add sudo
+      in previous comand just do "sudo !!"
+.............................................................................
+                         *FILE OPERATIONS*
+
+_____________________________________________________________________________
+touch + foldername -- creates files,
+    trick:
+         --touch chapter{1,2,3,4,5}.txt--
+         This will instantly create chapter1.txt, chapter2.txt, chapter3.txt, etc.
+..............................................................................
+mkdir -- Make Directory,  {-p (parents) flag}
+    trick:
+          --mkdir -p Photos/2026/Summer/Vacation--
+          This will instently create an entire tree of empty folders
+...............................................................................
+rm -r + foldername -- Remove Recursive, when useing this deletes an entire folder
+({DANGER})            with all its contents.(use -r for folders)
+................................................................................
+cp + name + destination --Copy,(use -r for folders)
+          trick:
+                To copy a file into a different folder:
+                cp notes.txt Documents/
+.................................................................................
+mv + name + destination --Move, same as cp but dosent need (-r)
+.................................................................................
+stat + name -- Status/Statistics, indepth analysis of file/folder
+.................................................................................
+file + name -- tells the type of file
+.................................................................................
+                            *READING FILES*
+
+_________________________________________________________________________________
+cat + name -- concatentate(link things together), used to read the contents of a file quickly
+.................................................................................
+less + name -- Less is more, the most proper way to read stuff
+.................................................................................
+head + filter + name -- shows the top of a file
+.................................................................................
+tail + filter + name -- shows the bottom of a file
+.................................................................................
+wc -- Word Count, counts total number of words and can count specific word
+.................................................................................
+                         *SEARCHING & FILTERS*
+
+_________________________________________________________________________________
+grep + "name" + file -- global regular expression print,looks inside files
+                        Goal                            Command
+                        Simple searchgrep               "text" file.txtSearch
+                        case-insensitivegrep -i         "text" file.txt
+                        Search entire foldergrep -r     "text" folder/
+                        Count occurrencesgrep -c        "text" file.txt
+..................................................................................
+sort + filename -- sorts files as specified
+                   Goal                     Command
+                   Alphabetical             sort file.txt
+                   Numeric (1, 2, 10)       sort -n file.txt
+                   Reverse Order            sort -r file.txt
+                   Remove Duplicates        sort -u file.txt
+...................................................................................
+uniq -- Unique, removes duplicates. always used with sort
+        Goal                        Command
+        Remove duplicates           sort file.txt | uniq
+        Count occurrences           sort file.txt | uniq -c
+        Show only repeated lines    sort file.txt | uniq -d
+...................................................................................
+cut -- helps to narrow down files pretty useful in excel
+       Goal                Flag Example
+       Set Separator    -d    -d ',' (for comma)
+       Select Column    -f    -f 1 (first column)
+       Range of Columns    -f    -f 1-3 (columns 1 through 3)
+       Characters        -c    -c 1-10 (first 10 letters)
+..................................................................................
+awk '{ action }' filename -- its a programing language of its own. advanced cut
+its like the                 Goal               Command
+king of                      Print 1st Column   awk '{print $1}' file
+colums                       Print 1st & 3rd    awk '{print $1, $3}' file
+                             Add a label        awk '{print "User: " $1}' file
+                             Search & Print     awk '/error/ {print $3}' log
+...................................................................................
+sed -- its a text editor works by comands
+       Goal                          Command
+       Replace first match          sed 's/old/new/' file
+       Replace ALL matches          sed 's/old/new/g' file
+       Delete empty lines           sed '/^$/d' file
+       Case-insensitive search      sed 's/old/new/Ig' file
+....................................................................................
+                            *Permissions & Users*
+
+____________________________________________________________________________________
+chmod + octal/symbolics -- change mode, change who can w,r,x a file as u,g,o,a
+....................................................................................
+sudo + chown + (owner)/(:group) + file -- change owner,
+....................................................................................
+whoami -- tells the current user
+....................................................................................
+groups -- who am i for group
+....................................................................................
+id -- tells -userid(UID) and groupid (GID)
+....................................................................................
+DANGER: PC BUTCHER CODE
+sudo -- SuperUserDo, God mode ultimate root user
+
+sudo -i -- a version of sudo where you can use for prolonged time
+
+use exit to exit sudo -i
+....................................................................................
+                        *Processes, Services & Logs*
+
+Processes
+____________________________________________________________________________________
+ps aux -- process status, lists all current process. used with grep to sort
+....................................................................................        
+top / htop -- table of process, shows every processes data live
+....................................................................................
+kill -- shuts down process
+....................................................................................
+kill -9 -- forcefull stop the process
+....................................................................................
+nice -- a scale to measure resource useage. allocate resourcess for processes
+....................................................................................
+
+Service
+....................................................................................
+systemctl status -- check if a service is renning.
+....................................................................................
+systemctl start -- manually activates the service
+....................................................................................
+systemctl stop -- manual request to stop the service
+....................................................................................
+systemctl restart -- manually restart the service
+....................................................................................
+systemctl enable -- runs service at reboot
+....................................................................................
+
+Logs
+....................................................................................
+/var/log -- its like the library of all the logs
+....................................................................................
+journalctl -- it sorts logs into the useful format
+....................................................................................
+journalctl -u service-name -- a more specific filter
+....................................................................................
+                                *Networks*
+____________________________________________________________________________________
+ip a --
+....................................................................................
+ss -tulpn --
+....................................................................................
+ping --
+....................................................................................
+curl --
+....................................................................................
+wget --
+....................................................................................
+netstat (legacy) --
+....................................................................................
